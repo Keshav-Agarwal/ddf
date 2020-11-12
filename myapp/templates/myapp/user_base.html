@@ -1,0 +1,50 @@
+{% extends "myapp/base.html" %}
+{% block base %}
+<div style="background-color: white; width: 100%; display:inline-block">
+<h3 style="text-align:center">Hello {{request.user.username}}</h3></div>
+
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+{% endfor %}
+<br><br>
+<div class="row h-100">
+
+
+    <div class="col-md-3">
+        <div class="w-100"><a href="{% url 'myapp:tasks' %}"><button class="sidebar-buttons"><i class="material-icons">home</i>Home</button></a></div><br>
+        <div class="w-100"><a href="{% url 'myapp:profile' %}"><button class="sidebar-buttons"><i class="material-icons">person</i>Profile</button></a></div><br>
+        <div class="w-100"><a href="{% url 'myapp:completed_tasks' %}"><button class="sidebar-buttons"><i class="material-icons">assignment</i>Tasks Completed</button></a></div>
+        
+        {% if perms.myapp.add_tasks and perms.myapp.delete_tasks and perms.myapp.edit_tasks %}
+        <br>
+        <hr class="solid">
+        <div style="margin-left: 18vh;
+        font-family: sans-serif, Helvetica, Trebuchet MS";>ADMIN</div>
+        <br>
+        <div class="w-100"><a href="{% url 'myapp:admin_view' %}"><button class="sidebar-buttons"><i class="material-icons">person</i>Add Tasks</button></a></div><br>
+        <div class="w-100"><a href="{% url 'myapp:tasks_admin' %}"><button class="sidebar-buttons"><i class="material-icons">person</i>Delete Tasks</button></a></div><br>
+        <div class="w-100"><a href="{% url 'myapp:admin_users' %}"><button class="sidebar-buttons"><i class="material-icons">person</i>See Users</button></a></div><br>
+
+        {% endif %}
+        <hr class="solid">
+
+        <div class="w-100"><a href="{% url 'myapp:logout' %}"><button class="sidebar-buttons"><i class="material-icons">power_settings_new</i>Log Out</button></a></div><br>
+    
+        
+    
+    </div>
+
+    <div class="col-md-9 h-100">
+        {% block userbase %}
+        {% endblock %}
+
+    </div>
+</div>
+
+
+{% endblock %}

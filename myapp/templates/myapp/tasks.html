@@ -1,0 +1,64 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+
+<!--list of tasks in user interface-->
+
+
+
+<div class="style-right">
+{% for task in tasks %}
+
+
+<div class="card bor-col" style="margin: 3vh;  height: 27%;">
+    <div class="card-horizontal h-100" style="display: flex; flex: 1 1 auto; padding-right: 8%;">
+        <div class="img-square-wrapper h-100">
+            <button 
+            alt="Card image cap" 
+            data-toggle="modal" data-target="#myModal"
+            style="margin: 2vh; 
+            height: 17vh; 
+            width: 17vh; 
+            background-image: url('{{task.task_ss.url}}');
+            background-size: cover;
+            border-radius: 5px; 
+            margin-right: 5vh;"
+            >
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <img src="{{task.task_ss.url}}" class="img-responsive">
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
+        </div>
+        <div class="card-body">
+            <div class="card-text d-flex justify-content-between">
+                <div>
+                    <br>
+                <h2><b>{{task.task_name}}</b></h2>
+                <h5>{{task.points}} points</h5>
+                </div>
+<div>
+    {% if not task.done %}
+                <form action="{% url 'myapp:task_detail' task.id %}" style="margin-top: 40%;">
+                    <input type="submit" value="Do Task" class="but-for">
+                </form>
+    {% else %}
+                <h5 style="margin-top: 40%;">Task Done</h5>
+    {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
+</div>
+
+{% endblock %}

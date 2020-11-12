@@ -1,0 +1,63 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+<!--View for adding tasks-->
+
+
+		<div class="style-right">
+
+
+			<form action="{% url 'myapp:admin_view' %}" method="post" enctype="multipart/form-data" style="height: 82%;">
+				{% csrf_token %}
+				
+
+				
+				<label class="myLabel" 
+				id = "input" style="
+				margin-top: 10vh; 
+				margin-left: 25vw;
+				height: 40%; width: 25%;
+				background-image: url('https://png.pngitem.com/pimgs/s/463-4636051_upload-deployment-svg-png-icon-free-download-deploy.png');
+				background-size: cover;
+				border-radius: 5px; 
+				margin-right: 5vh;
+				opacity: 50%;
+				border:  2px solid black;
+				"
+				
+				>
+					<input id="upload" type="file" name="task_logo" onchange="loadFile(event)" required/>
+				</label>
+	
+	<img id="output" style="width: 25%; margin-top: 10vh;border-radius: 5px;margin-left: 25vw; 
+margin-right: 5vh;">
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+	var input = document.getElementById('input');
+    output.src = URL.createObjectURL(event.target.files[0]);
+	input.style.display = "none";
+	output.style.border = "2px solid black";
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+</script>
+
+	<table style="width: 50vw; border-collapse: separate; border-spacing: 0 5vh; margin-left: 15vw;">
+	<tr>
+				<td><input type="text" id="task_name" name="task_name" placeholder="Task Name" required></td>
+				<td><input type="text" id="category" name="category" placeholder="Task Category" required></td>
+	</tr>
+<tr>
+	<td><input type="url" id="task_url" name="task_url" placeholder="Task URL" required></td>
+	<td><input type="number" id="points" name="points" placeholder="Task Points" required> 
+	</td>	</tr></table>
+
+	<input type="submit" value="Add" style="margin-left: 30vw;" class="but-for">
+
+		</form>
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+
+<!-- All tasks done by a user-->
+
+<div class="style-right">
+ {% for task in completed_tasks %}  
+
+
+<div class="card bor-col" style="margin: 3vh;  height: 27%;">
+    <div class="card-horizontal h-100" style="display: flex; flex: 1 1 auto; padding-right: 8%;">
+        <div class="img-square-wrapper h-100">
+
+                <button 
+                alt="Card image cap" 
+                data-toggle="modal" data-target="#myModal"
+                style="margin: 2vh; 
+                height: 17vh; 
+                width: 17vh; 
+                background-image: url('{{task.completed_task_ss.url}}');
+                background-size: cover;
+                border-radius: 5px; 
+                margin-right: 5vh;"
+                >
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-body">
+                              <img src="{{task.completed_task_ss.url}}" class="img-responsive">
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+    
+        </div>
+        <div class="card-body">
+            <div class="card-text d-flex justify-content-between">
+                <div>
+                <h2>{{task.task.task_name}}</h2>
+                <h5><a href="{{task.task.task_url}}" style="border-bottom: 1px dotted blue">{{task.task.task_url}}</a></h5>
+                <h5>{{task.task.points}} points</h5>
+                </div>
+<div>
+    
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endfor %}
+
+
+</div>
+
+{% endblock %}

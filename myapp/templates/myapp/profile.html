@@ -1,0 +1,15 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+
+
+<!-- Profile Page-->
+<div class="style-right" style="overflow: hidden;">
+
+<table class="table">
+<tr><td>Name</td> <td>: {{user.first_name}} {{user.last_name}}</td></tr>
+<tr><td>Username</td> <td>: {{user.username}}</td></tr>
+<tr><td>Points Collected</td> <td>: {{points.task__points__sum}}</td></tr>
+</table>
+
+</div>
+{% endblock %}

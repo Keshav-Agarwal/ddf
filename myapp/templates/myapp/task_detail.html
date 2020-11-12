@@ -1,0 +1,82 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+<div class="style-right" style="overflow: hidden;">
+<br>	<div class="border border-secondary" style="background-color: #DFE6ED; height: 92%; margin-left: 2%; margin-right: 1%; border-color: black; border-width: 20%;">
+		<form action="{% url 'myapp:complete_new_task' %}" method="post" enctype="multipart/form-data" style="height: 82%;">
+			{% csrf_token %}
+			<input type="hidden" id="task_id" name="task_id" value={{task.id}} required>
+			
+            
+            <div style="margin-top: 3vh;" >
+                <img class="" src="{{task.task_ss.url}}" alt="Card image cap" style="float:left; margin-left: 13.5vh; margin-right: 5vh; height: 15vh; width: 15vh; border-radius: 5px; border-color: black; border-width: 2px;">
+<h1>  {{task.task_name}}</h1>
+<input type="submit" value="+{{task.points}} POINTS" style="float:right; margin-right: 14.5vh;" class="but-for">
+
+<h5><a href="{{task.task_url}}" style="border-bottom: 1px dotted blue">{{task.task_url}}</a></h5>
+
+
+            </div>
+
+			<label class="myLabel" 
+			id = "input" style="
+			margin-top: 10vh; 
+			height: 45vh; 
+			width: 68vh;
+            background-image: url('https://png.pngitem.com/pimgs/s/463-4636051_upload-deployment-svg-png-icon-free-download-deploy.png');
+            background-size: cover;
+            border-radius: 5px; 
+			margin-right: 5vh;
+			opacity: 50%;
+			border:  2px solid black;
+			"
+			
+			>
+				<input id="upload" type="file" name="proof_ss" onchange="loadFile(event)" required/>
+			</label>
+
+<img id="output" style="height: 45vh; margin-top: 10vh;border-radius: 5px; 
+margin-right: 5vh;">
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+	var input = document.getElementById('input');
+    output.src = URL.createObjectURL(event.target.files[0]);
+	input.style.display = "none";
+	output.style.border = "2px solid black";
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
+			
+
+
+<!--
+			<label style="height: 63%; width: 75%; background-color: whitesmoke; margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -30%);"
+			>
+			<input id="upload" type="file" name="proof_ss" size="60" style="position:absolute; top: -1000px;">
+			<span class="material-icons" style="font-size: 400%; margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);">wallpaper</span>
+			<p style=" margin: 0;
+				position: absolute;
+				left: 50%; font-size: 150%;
+				-ms-transform: translate(-50%);
+                transform: translate(-50%);">        Click here to upload screenshot</p>
+			</label>
+
+		-->	
+	
+	</div>
+	</form>
+</div>
+</div>
+{% endblock %}

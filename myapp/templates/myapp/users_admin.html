@@ -1,0 +1,41 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+
+
+<!--see list of all users in admin-->
+
+<div class="style-right" style="overflow: scroll;">
+
+    <table class="table">
+
+        {% for user in users %}
+
+    <tr>
+        <td>{{user.first_name}} {{user.last_name}}</td>
+        <td><form action="{% url 'myapp:specific_user' user.id %}">
+            <input type="submit" value="View" class="but-for">
+        </form></td>
+
+        <td>
+            {% if request.user.id == user.id%}
+            You
+            {% elif user.is_superuser %}
+            Main Admin
+            {% elif 'myapp.add_tasks' in  user.get_user_permissions %}
+            Already Admin
+            {% elif perms.auth.add_user%}
+            <form action="{% url 'myapp:add_admin' user.id %}">
+            <input type="submit" value="Make Admin" class="but-for">
+
+            {% endif %}
+        </form>
+    </td>
+    
+    </tr>
+
+    {% endfor %}
+    </table>
+    
+    </div>
+
+{% endblock %}

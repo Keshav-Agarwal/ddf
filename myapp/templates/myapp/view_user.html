@@ -1,0 +1,49 @@
+{% extends "myapp/user_base.html" %}
+{% block userbase %}
+
+<!--view specific user-->
+
+<div class="style-right" style="overflow: hidden;">
+
+<table class="table">
+<tr><td>Name</td> <td>: {{user.first_name}} {{user.last_name}}</td></tr>
+<tr><td>Username</td> <td>: {{user.username}}</td></tr>
+<tr><td>Points Collected</td> <td>: {{points.task__points__sum}}</td></tr>
+</table>
+
+{% if perms.auth.add_user and not user.is_superuser %}
+<form action="{% url 'myapp:delete_user' user.id %}" method="delete">
+    <input type="submit" value="Delete" class="but-for">
+</form>
+{%  endif %}
+
+<hr class="solid">
+
+<h3>Tasks Completed</h3>
+
+<table class="table">
+{% for task in completed_tasks%}
+<tr>
+    <td>{{task.task.task_name}}</td>
+    <td>{{task.completed_at}}</td>
+    <td>{{task.task.points}}</td>
+    <td><button type="button" class="but-for" data-toggle="modal" data-target="#myModal">View image</button></td>
+</tr>
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body">
+            <img src="{{task.completed_task_ss.url}}" class="img-responsive">
+        </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</table>
+
+
+</div>
+{% endblock %}
