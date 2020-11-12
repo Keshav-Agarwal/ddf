@@ -1,6 +1,7 @@
 {% extends "myapp/user_base.html" %}
 {% block userbase %}
 
+
 <!--list of tasks in user interface-->
 
 
@@ -18,7 +19,7 @@
             style="margin: 2vh; 
             height: 17vh; 
             width: 17vh; 
-            background-image: url('{{task.task_ss.url}}');
+            background-image: url('{{ task.task_ss.url }}');
             background-size: cover;
             border-radius: 5px; 
             margin-right: 5vh;"
@@ -27,7 +28,7 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-body">
-                          <img src="{{task.task_ss.url}}" class="img-responsive">
+                          <img src='{{ task.task_ss.url }}' class="img-responsive">
                       </div>
                   </div>
                 </div>

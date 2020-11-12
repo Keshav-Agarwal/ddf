@@ -139,7 +139,8 @@ class ViewUser(LoginRequiredMixin, PermissionRequiredMixin, View):
         user_id = kwargs['user_id']
         user = User.objects.get(pk=user_id)
         completed_tasks = CompletedTasks.objects.filter(user=user)
-        return render(request, 'myapp/view_user.html', {'user':user, 'completed_tasks':completed_tasks})
+        points = CompletedTasks.objects.filter(user__pk=user_id).aggregate(Sum('task__points'))
+        return render(request, 'myapp/view_user.html', {'user':user, 'completed_tasks':completed_tasks, 'points':points})
 
 
 

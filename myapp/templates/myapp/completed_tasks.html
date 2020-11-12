@@ -17,7 +17,7 @@
                 style="margin: 2vh; 
                 height: 17vh; 
                 width: 17vh; 
-                background-image: url('{{task.completed_task_ss.url}}');
+                background-image: url('{% static task.completed_task_ss.url %}');
                 background-size: cover;
                 border-radius: 5px; 
                 margin-right: 5vh;"
@@ -26,7 +26,7 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-body">
-                              <img src="{{task.completed_task_ss.url}}" class="img-responsive">
+                              <img src="{{ task.completed_task_ss.url }}" class="img-responsive">
                           </div>
                       </div>
                     </div>
@@ -37,7 +37,7 @@
             <div class="card-text d-flex justify-content-between">
                 <div>
                 <h2>{{task.task.task_name}}</h2>
-                <h5><a href="{{task.task.task_url}}" style="border-bottom: 1px dotted blue">{{task.task.task_url}}</a></h5>
+                <h5><a href="{{ task.completed_task_ss.url }}" style="border-bottom: 1px dotted blue">{{task.task.task_url}}</a></h5>
                 <h5>{{task.task.points}} points</h5>
                 </div>
 <div>
