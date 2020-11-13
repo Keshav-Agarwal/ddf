@@ -27,29 +27,22 @@
     <td>{{task.task.task_name}}</td>
     <td>{{task.completed_at}}</td>
     <td>{{task.task.points}}</td>
-    <td><button type="button" class="but-for" data-toggle="modal" data-target="#myModal" id="getSrc">View image</button></td>
+    <td><button type="button" class="but-for" data-toggle="modal" data-target="#myModal{{forloop.counter}}" id="getSrc">View image</button></td>
 </tr>
 
 
 
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
-            <img class="img-responsive" id="showPic">
+            <img class="img-responsive" id="showPic" src="{{task.completed_task_ss.url}}">
         </div>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function()
-  {
-   $('#getSrc').click(function() {
-   $('#showPic').attr('src', '{{task.completed_task_ss.url}}');
-   });
-  });
-</script>
+
 {% endfor %}
 </table>
 

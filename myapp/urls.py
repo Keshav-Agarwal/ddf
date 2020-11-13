@@ -26,8 +26,6 @@ urlpatterns = [
     path('', views.FirstPage.as_view(), name='first_page'),
 ]
 
-if settings.DEBUG:
-     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

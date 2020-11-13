@@ -16,20 +16,20 @@
             <button 
             alt="Card image cap" 
             id="getSrc"
-            data-toggle="modal" data-target="#myModal"
+            data-toggle="modal" data-target="#myModal{{forloop.counter}}"
             style="margin: 2vh; 
             height: 17vh; 
             width: 17vh; 
-            background-image: '{{ task.task_ss.url }}';
+            background-image: 'url{{ task.task_ss.url }}';
             background-size: cover;
             border-radius: 5px; 
             margin-right: 5vh;"
             >
-            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="myModal{{forloop.counter}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                       <div class="modal-body">
-                          <img id="showPic" class="img-responsive">
+                          <img id="showPic" class="img-responsive" src="{{ task.task_ss.url }}">
                       </div>
                   </div>
                 </div>
@@ -59,15 +59,6 @@
 </div>
 
 
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-     $('#getSrc').click(function() {
-        var src =$(this).attr('src');
-     $('#showPic').attr('src', src);
-     });
-    });
-</script>
 
 {% endfor %}
 
