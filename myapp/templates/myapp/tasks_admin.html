@@ -14,6 +14,7 @@
             <button 
                 alt="Card image cap" 
                 data-toggle="modal" data-target="#myModal"
+                id="getSrc"
                 style="margin: 2vh; 
                 height: 17vh; 
                 width: 17vh; 
@@ -26,7 +27,7 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-body">
-                              <img src="{{task.task_ss.url}}" class="img-responsive">
+                              <img id="showPic" class="img-responsive">
                           </div>
                       </div>
                     </div>
@@ -51,6 +52,16 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+     $('#getSrc').click(function() {
+        var src =$(this).attr('src');
+     $('#showPic').attr('src', src);
+     });
+    });
+</script>
 
 {% endfor %}
 

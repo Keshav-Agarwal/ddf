@@ -27,7 +27,7 @@
     <td>{{task.task.task_name}}</td>
     <td>{{task.completed_at}}</td>
     <td>{{task.task.points}}</td>
-    <td><button type="button" class="but-for" data-toggle="modal" data-target="#myModal">View image</button></td>
+    <td><button type="button" class="but-for" data-toggle="modal" data-target="#myModal" id="getSrc">View image</button></td>
 </tr>
 
 
@@ -36,11 +36,20 @@
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
-            <img src="{{task.completed_task_ss.url}}" class="img-responsive">
+            <img class="img-responsive" id="showPic">
         </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+   $('#getSrc').click(function() {
+   $('#showPic').attr('src', '{{task.completed_task_ss.url}}');
+   });
+  });
+</script>
 {% endfor %}
 </table>
 
